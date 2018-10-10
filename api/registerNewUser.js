@@ -3,29 +3,21 @@ const User = require('../config/db/schemas/User')
 
 const registerNewUser = ({username, password, passwordConfirm, email}) => {
     return new Promise((resolve, reject) => {
-
         validatePassword(password, passwordConfirm)
-
         .then((hash) => {
             checkForDuplicates(username, email)
-
             .then(() => {
                 saveUser({username, hash, email})
-
                 .then((result) => {
                     resolve(result)
                 })
-
                 .catch((err) => {
                     reject(err)
                 })
-
             })
-
             .catch((err) => {
                 reject(err)
             })
-
         })
         .catch((err) => {
             reject(err)

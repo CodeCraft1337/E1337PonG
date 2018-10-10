@@ -6,8 +6,9 @@ var logger = require('morgan');
 var session = require('express-session')
 var bodyParser = require('body-parser')
 var passport = require('passport')
-var indexRouter = require('./routes/index');
 
+var indexRouter = require('./routes/index');
+var authRouter = require('./routes/auth')
 var app = express();
 
 //MongoDB Connection
@@ -31,6 +32,8 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
+// use routers
+app.use('/auth', authRouter)
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

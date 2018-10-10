@@ -20,6 +20,8 @@ router.post('/register', (req, res) => {
 })
 
 //Login strategies /login/[strategyName]
-router.post('/login/local', passport.authenticate('local'), (req, res) => {
-    //respond to POST request 
-})
+
+router.post('/login/local', passport.authenticate('local', {
+     successRedirect: '/',
+     failureRedirect: '/login'
+}))
