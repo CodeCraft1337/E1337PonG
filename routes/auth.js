@@ -5,7 +5,6 @@ const passport = require('passport')
 const registerNewUser = require('../api/registerNewUser')
 
 router.post('/register', (req, res) => {
-    //respond to POST request
 
     registerNewUser(req.data)
     .then((result) => {
@@ -25,3 +24,16 @@ router.post('/login/local', passport.authenticate('local', {
      successRedirect: '/',
      failureRedirect: '/login'
 }))
+
+//Checks if user is logged in.
+
+router.get('/checkUser', (req, res) => {
+    if(req.user) {
+        res.send(req.user)
+    } else {
+        res.send(false)
+    }
+})
+
+
+module.exports = router
