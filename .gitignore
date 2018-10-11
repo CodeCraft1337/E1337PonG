@@ -1,0 +1,6 @@
+#Ignore secret keys
+
+/config/db/secret.js
+
+#Ignore npm modules
+/node_modules
